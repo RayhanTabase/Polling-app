@@ -6,6 +6,10 @@ This is a polling app that allows registered users to create polls and also vote
 
 All webpages are mobile responsive
 
+### Short Video presentation: https://www.youtube.com/watch?v=nyNaelEiqxM
+
+### Deployed to heroku : https://pollingbox.herokuapp.com/
+
 ### Features
 1. Create and manage user account.
 2. Create and manage poll.
