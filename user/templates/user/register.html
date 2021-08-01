@@ -1,0 +1,98 @@
+
+{% extends 'theSP/layout.html' %}
+
+{% block title %} Register {% endblock title%}
+
+
+{% block body %}
+
+    {% if error_messages %}
+        {% for error in error_messages %}
+            <div class="error_message"><h2 class="text-danger text-center">{{error}}</h2></div>
+        {% endfor %}
+    {% endif %}
+    <div class="container-fluid">
+        <div class='container background-glass'>
+            <div class="square-animate" style="--i:0"></div>
+            <div class="square-animate" style="--i:1"></div>
+            <div class="square-animate" style="--i:2"></div>
+            <div class="square-animate" style="--i:3"></div>
+            <div class="square-animate" style="--i:4"></div>
+            <div class="square-animate" style="--i:5"></div>
+        </div>
+        <div class="container-center-column">
+            <div class="form-box-large" style="z-index:30">
+                <h2>Register</h2>
+                <form action="{% url 'user:register' %}" method="post" enctype="multipart/form-data">
+                    {% csrf_token %}
+                    <!-- {{form.as_p}} -->
+                    <div class="form-group">
+                        <label for="inputUsername">Username</label>
+                        <input id="inputUsername" class="form-control" type="text" name="username" required>                  
+                    </div>
+
+                    <div class="form-group">
+                        <label for="inputFirstname">First Name</label>
+                        <input id ="inputFirstname" class="form-control" type="text" name="first_name" required>                
+                    </div>
+
+                    <div class="form-group">
+                        <label for="inputlastname">last Name</label>
+                        <input id="inputlastname" class="form-control" type="text" name="last_name"  required>                 
+                    </div>
+
+                    <div class="form-group">
+                        <label for="inputOthernames">Other Names</label>
+                        <input id="inputOthernames" class="form-control" type="text" name="other_names" >                
+                    </div>
+
+                    <div class="form-group">
+                        <label for="dob">Date OF Birth</label>
+                        <input id="dob" class="form-control" type="date" name="date_of_birth" required>                
+                    </div>
+
+                    <div class="form-group">
+                        <label for="inputEmail">Email</label>
+                        <input id="inputEmail" class="form-control" type="email" name="email" required>                
+                    </div>
+
+                    <div class="form-row">
+                        <div class="form-group col-md-2">
+                            <label for="inputZip"> + Zip</label>
+                            <input type="number" class="form-control" id="inputZip" name="country_code" value="233" step="1">
+                          </div>
+                        <div class="form-group col-md-10">
+                          <label for="inputPhone">Phone Number</label>
+                          <input type="number" class="form-control" id="inputPhone" name="phone_number" step="1" required>
+                        </div>
+                    </div>
+
+                    <div class="form-group">
+                        <label for="profile_picture">Upload Profile Picture</label>
+                        <input id ="profile_picture" class="form-control-file" name="profile_picture" type="file" >                
+                    </div>
+
+                    <div class="form-group">
+                        <label for="password">Password</label>
+                        <input id="password" class="form-control" type="password" name="password" required>               
+                    </div>
+
+                    <div class="form-group">
+                        <label for="confirm_password">Confirm Password</label>
+                        <input id="confirm_password"  class="form-control" type="password" name="confirm_password" required>                
+                    </div>
+                    <div class="container-center-column" style="margin-top: 2em;">
+                        <input class="btn btn-primary btn-lg"  type="submit" value="Register">
+                    </div>
+                </form>
+                <div class="container-center-column">
+                    <p>Already have an account? <a href="{% url 'user:login' %}">Log In here.</a></p>
+                </div>
+            </div>
+        </div>
+
+    </div>
+
+    
+
+{% endblock body %}

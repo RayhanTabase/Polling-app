@@ -1,0 +1,45 @@
+<nav class="navbar navbar-expand-lg navbar-dark bg-dark" style="z-index: 100;">
+    <a class="navbar-brand" href="{% url 'polls:index' %}">Polls</a>
+    <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarLayout" aria-controls="navbarLayout" aria-expanded="false" aria-label="Toggle navigation">
+        <span class="navbar-toggler-icon"></span>
+    </button>
+
+    <div class="collapse navbar-collapse" id="navbarLayout">
+        <ul class="navbar-nav mr-auto">
+            {% if request.user.is_authenticated %}
+                <li {% if page == "home" %} class="nav-iten active" {% else %} class="nav-item" {% endif %}>
+                    <a class="nav-link" href="{% url 'polls:index' %}">Home</a>
+                </li>
+                <li {% if page == "myPolls" %} class="nav-iten active" {% else %} class="nav-item" {% endif %}>
+                    <a class="nav-link" href="{% url 'polls:my_index' %}">My Polls</a>
+                </li>
+                <li {% if page == "results" %} class="nav-iten active" {% else %} class="nav-item" {% endif %}>
+                    <a class="nav-link" href="{% url 'polls:results_index' %}">Results</a>
+                </li>
+                <li {% if page == "profile" %} class="nav-iten active" {% else %} class="nav-item" {% endif %}>
+                    <a class="nav-link" href="{% url 'user:user_profile' %}">Profile</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" href="{% url 'user:logout' %}">Logout</a>
+                </li>
+            {% else %}
+                <li class="nav-item">
+                    <a class="nav-link" href="{% url 'user:login' %}">Login</a>
+                </li>
+            {% endif %}
+
+            {% comment %} <li class="nav-item dropdown">
+                <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                Dropdown
+                </a>
+                <div class="dropdown-menu" aria-labelledby="navbarDropdown">
+                <a class="dropdown-item" href="#">Action</a>
+                <a class="dropdown-item" href="#">Another action</a>
+                <div class="dropdown-divider"></div>
+                <a class="dropdown-item" href="#">Something else here</a>
+                </div>
+            </li> {% endcomment %}
+        </ul>
+    </div>
+</nav>
+

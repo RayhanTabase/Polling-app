@@ -1,0 +1,28 @@
+{% extends 'theSP/layout.html' %}
+{% load static %}
+{% block title %} Settings and Management{% endblock title%}
+
+{% block script %}
+    <script > 
+        const POLL_NAME = "{{poll.name}}"  
+        const PAGE_VIEW = "{{view}}" 
+        const POLL_IS_ACTIVE = "{{poll.active}}"  
+    </script>
+    <script type="text/babel" src="{% static 'polls/js/categories_mgt.js' %}" ></script>
+    <script type="text/babel" src="{% static 'polls/js/candidates_mgt.js' %}" ></script>
+    <script type="text/babel" src="{% static 'polls/js/settings.js' %}" ></script>
+    <script type="text/babel" src="{% static 'polls/js/poll_management.js' %}" ></script>
+
+{% endblock script %}
+
+{% block body %}
+    <div class="header poll_header" style="margin-bottom:0%">
+        <img src="{{poll.image.url}}" > 
+        <div class="text">         
+            <h1>{{poll.name}}</h1>
+        </div>
+    </div>
+    <div id="body">
+
+    </div>
+{% endblock body %}

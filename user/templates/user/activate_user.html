@@ -1,0 +1,40 @@
+
+{% extends 'theSP/layout.html' %}
+
+{% block title %} Activate Profile {% endblock title%}
+
+{% block body %}
+    <div class="container-fluid">
+        <div>
+            {% if error_message %}
+            <div class="error_message"></div><h2 class="text-danger text-center">{{ error_message }}</h2></div>
+            {% endif %}
+            <div class="container-center-column">
+                <div class="form-box-small" style="margin-top: 2em;">
+                    <h2>Enter Code To Activate Account</h2>
+                    <div>
+                        <form  action="{% url 'user:activate_user' username=username %}" method="POST">
+                            {% csrf_token %}
+                            <input name="form_type" value="activate_form" readonly hidden>
+                            <div class="form-group">
+                                <input class="form-control" name="code" type="number">
+                            </div>
+                            <div class="form-group container-center-row">
+                                <input class="btn btn-primary" type="submit">
+                            </div>
+                        </form>
+                    </div>
+                    <form  action="{% url 'user:activate_user' username=username %}" method="POST">
+                        {% csrf_token %}
+                        <input name="form_type" value="resend_code" readonly hidden>
+                        
+                        <div class="container-center-row">
+                            <p style="color: black;font-size: 1.5rem;">Didn't receive code?</p>
+                            <button class="btn btn-link"><p style="font-weight: 600;">Resend</</button>
+                        </div>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </div>
+{% endblock body %}

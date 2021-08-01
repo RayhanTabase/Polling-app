@@ -1,0 +1,56 @@
+{% extends 'theSP/layout.html' %}
+
+{% block title %} Edit Profile {% endblock title%}
+
+
+{% block body %}
+    {% if error_message %}
+        <div class="error_message"> <h2 class="text-danger text-center">{{ error_message }}</h2> </div>
+    {% endif %}
+    <div class="container-fluid">
+        <div class='container background-glass'>
+            <div class="square-animate" style="--i:0"></div>
+            <div class="square-animate" style="--i:1"></div>
+            <div class="square-animate" style="--i:2"></div>
+            <div class="square-animate" style="--i:3"></div>
+            <div class="square-animate" style="--i:4"></div>
+            <div class="square-animate" style="--i:5"></div>
+        </div>
+        <div class="container-center-column">  
+            <div class="form-box-large" style="z-index:30">
+                <h2>Edit Profile</h2>
+                
+                <form class="form-group" action="{% url 'user:edit_profile' %}" method="post" enctype="multipart/form-data" style="text-align:center">
+                    {% csrf_token %}
+                    {% for instance in form %}
+                        <div class="form-group">
+                            {{instance.label_tag}}     
+                            {{instance}}                  
+                        </div>
+                    {% endfor %}
+                    <input class="btn btn-primary"  type="submit" style="margin-top:1em">
+                    <div class="container-center-row lone-btn">
+                        <button type="button" id="delete_account" class="btn btn-danger" style="color: white;margin-top: 2em;">DELETE ACCOUNT</button>
+                    </div>
+                </form>
+            </div>
+        </div>
+        <script>
+            const delete_account = document.getElementById('delete_account')
+            delete_account.addEventListener('click', ()=> deleteAccount())
+            function deleteAccount(){
+                if(confirm("ARE YOU SURE YOU WANT TO DELETE YOUR ACCOUNT?")){
+                    fetch(`${window.location}`,{
+                        method:"DELETE",
+                        headers: {
+                            "X-CSRFToken": getCookie("csrftoken")
+                        }
+                    })
+                    .then(response=>{
+                        console.log(response)
+                    })
+                }
+            }
+        </script>  
+    </div>
+{% endblock body %}

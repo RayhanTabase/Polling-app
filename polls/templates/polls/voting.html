@@ -1,0 +1,48 @@
+{% extends 'theSP/layout.html' %}
+{% load static %}
+{% block title %} Voting{% endblock title%}
+
+
+{% block script %}
+    <script>
+        const POLL_NAME = "{{poll.name}}"
+        const PREVIEW = "{{preview}}"
+        document.addEventListener('DOMContentLoaded', function() {
+            const voted_already = document.querySelector("#voted-already")
+            document.querySelector("#close_voted-already").addEventListener('click',function(){
+                voted_already.style.display = "none"
+            })
+        })
+    </script>
+    <script type="text/babel" src="{% static 'polls/js/voting.js' %}">  </script> 
+{% endblock script %}
+
+{% block body %}
+    {% if not poll.active %}
+        {% if not preview %}
+            <div class= "container-center-column container-overlay">
+                <h1 class="text-center" style="color: blue;">Voting Is Closed</h1>
+            </div>
+        {% endif %}
+    {% endif %}
+    <div id="voted-already" style="display: none;">
+        <div class="container-overlay">
+            <div class="container-center-column">
+                <div class="pop-up">
+                    <h2 class="message">YOU HAVE ALREADY VOTED IN THIS CATEGORY</h2>
+                    <button id="close_voted-already">CLOSE</button> 
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div class="header poll_header" style="margin-bottom:0%">
+        <img src="{{poll.image.url}}" > 
+        <div class="text">         
+            <h1>{{poll.name}}</h1>
+        </div>
+    </div>
+
+    <div id="body">
+    </div>
+{% endblock body %}

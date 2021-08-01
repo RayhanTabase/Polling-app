@@ -1,0 +1,22 @@
+{% extends 'theSP/layout.html' %}
+
+{% block title %} Provide Key {% endblock title%}
+
+{% block body %} 
+    <div class="container-center-column" style="height: 100vh;">
+        {% if error_message %}
+            <div class="error_message"><h2 class="text-danger text-center">{{error_message}}</h2></div>
+        {% endif %}
+        <div class="form-box-small">
+            <h2>Access Key</h2>
+            <form action="{% url 'polls:input_key' poll_name=poll_name %}" method="post">
+                {% csrf_token %}
+                <div class="form-group">
+                    <input autofocus class="form-control" type="password" name="key" placeholder="Key" required>
+                </div>
+                <br>
+                <input class="btn btn-primary" type="submit" value="Proceed">
+            </form>   
+        </div>
+    </div>
+{% endblock body %}

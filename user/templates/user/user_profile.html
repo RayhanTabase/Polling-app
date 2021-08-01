@@ -1,0 +1,55 @@
+
+{% extends 'theSP/layout.html' %}
+
+{% block title %} Profile {% endblock title%}
+
+{% block body %}
+
+    <main class="container-fluid">   
+        <div class="container-fluid background-glass">      
+            <div class="color"></div>
+            <div class="color"></div>
+            <div class="color"></div>
+            
+            <div class="square-animate" style="--i:0"></div>
+            <div class="square-animate" style="--i:1"></div>
+            <div class="square-animate" style="--i:2"></div>
+            <div class="square-animate" style="--i:3"></div>
+            <div class="square-animate" style="--i:4"></div>
+            <div class="square-animate" style="--i:5"></div>
+        </div>
+        <div class="container-center-column profile">
+            <div class="image" >
+                    {% if request.user.profile_picture %}
+                        <img src="{{request.user.profile_picture.url}}" class="rounded-circle" alt="profile picture">    
+                    {% else %}
+                        No Profile Image
+                    {% endif %}
+            </div>
+            <div class="username">
+                <h4>Username : {{request.user.username}}</h4>
+            </div>
+
+            <div class="name">
+                <h4>Name : {{request.user.first_name}} {{request.user.other_names}} {{request.user.last_name}}</h4>
+            </div>
+
+            <div class="phone">
+                <h4>Phone : +{{request.user.country_code}}-{{request.user.phone_number}}</h4>
+            </div>
+
+            <div class="email">
+                <h4>Email : {{request.user.email}}</h4>
+            </div>
+
+            <div class="edit">
+                <a class="btn btn-primary btn-lg" href="{% url 'user:edit_profile' %}" >
+                    <strong>
+                        Edit Profile
+                    </strong>
+                </a>
+                <a class="btn btn-primary btn-lg" href="{% url 'user:change_password' %}"><strong>Change Password</strong></a>
+            </div>    
+        </div>
+    </main>    
+{% endblock body %}

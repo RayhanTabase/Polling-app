@@ -1,0 +1,159 @@
+{% extends 'theSP/layout.html' %}
+{% load static %}
+
+{% block title %} My Polls {% endblock title%}
+
+{% block script %}
+    <script>
+        document.addEventListener('DOMContentLoaded', function() {
+            // Get buttons and divs to implement page view change
+            const show_NewPoll = document.getElementById("show_NewPoll")
+            const close_NewPoll = document.getElementById("close_NewPoll")
+            const newPollform = document.getElementById("newPollForm")
+            const body = document.getElementById("body")
+
+            show_NewPoll.addEventListener('click', ()=> show_section("newPollform"))
+            close_NewPoll.addEventListener('click', ()=> show_section("body"))
+            
+            // Function that hides others and displays the option selected
+            function show_section(section){
+                if(section === "newPollform"){
+                    body.style.display = 'none'
+                    newPollform.style.display = 'block'
+                }
+                else if(section === "body"){
+                    if(document.querySelector(".error_message")){
+                        window.location.href = window.location.href
+                    }else{
+                        body.style.display = 'block'
+                        newPollform.style.display = 'none'   
+                    }
+                }
+            }
+        })
+    </script>
+{% endblock %}
+
+{% block body %}
+    {% if error_messages %}
+        {% for error in error_messages %}
+            <div class="error_message"><h2 class="text-danger text-center">{{error}}</h2></div>
+        {% endfor %}
+    {% endif %}
+
+    <div class="container-center-column">
+        {% if error_messages %}
+            <div id="newPollForm" class="form-box-small" style="display:block; margin-top: 2em;">
+        {% else %}
+            <div id="newPollForm" class="form-box-small" style="display:none;  margin-top: 6em;">
+        {% endif %}
+            <h2>New Poll</h2>
+            <form action="{% url 'polls:my_index' %}" method="post" enctype="multipart/form-data">
+                {% csrf_token %}
+                {{form.as_p}}
+                <br>
+                <input class="btn btn-success" type="submit">
+            </form>
+            <div class="container-center-row">
+                <button class="btn btn-info btn-lg lone-btn" id="close_NewPoll" style="color:black">Close</button>
+            </div>
+        </div>
+    </div>
+
+    <div class="container">
+        {% if error_messages%}
+            <div id="body" style="display:none"> 
+        {% else %}
+            <div id="body" style="display:block"> 
+        {% endif %}
+            <div class="container-center-column lone-btn" >
+                <button class="btn btn-outline-primary btn-lg" id="show_NewPoll">
+                    Add New Poll
+                    <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-plus-circle-dotted" viewBox="0 0 16 16">
+                        <path d="M8 0c-.176 0-.35.006-.523.017l.064.998a7.117 7.117 0 0 1 .918 0l.064-.998A8.113 8.113 0 0 0 8 0zM6.44.152c-.346.069-.684.16-1.012.27l.321.948c.287-.098.582-.177.884-.237L6.44.153zm4.132.271a7.946 7.946 0 0 0-1.011-.27l-.194.98c.302.06.597.14.884.237l.321-.947zm1.873.925a8 8 0 0 0-.906-.524l-.443.896c.275.136.54.29.793.459l.556-.831zM4.46.824c-.314.155-.616.33-.905.524l.556.83a7.07 7.07 0 0 1 .793-.458L4.46.824zM2.725 1.985c-.262.23-.51.478-.74.74l.752.66c.202-.23.418-.446.648-.648l-.66-.752zm11.29.74a8.058 8.058 0 0 0-.74-.74l-.66.752c.23.202.447.418.648.648l.752-.66zm1.161 1.735a7.98 7.98 0 0 0-.524-.905l-.83.556c.169.253.322.518.458.793l.896-.443zM1.348 3.555c-.194.289-.37.591-.524.906l.896.443c.136-.275.29-.54.459-.793l-.831-.556zM.423 5.428a7.945 7.945 0 0 0-.27 1.011l.98.194c.06-.302.14-.597.237-.884l-.947-.321zM15.848 6.44a7.943 7.943 0 0 0-.27-1.012l-.948.321c.098.287.177.582.237.884l.98-.194zM.017 7.477a8.113 8.113 0 0 0 0 1.046l.998-.064a7.117 7.117 0 0 1 0-.918l-.998-.064zM16 8a8.1 8.1 0 0 0-.017-.523l-.998.064a7.11 7.11 0 0 1 0 .918l.998.064A8.1 8.1 0 0 0 16 8zM.152 9.56c.069.346.16.684.27 1.012l.948-.321a6.944 6.944 0 0 1-.237-.884l-.98.194zm15.425 1.012c.112-.328.202-.666.27-1.011l-.98-.194c-.06.302-.14.597-.237.884l.947.321zM.824 11.54a8 8 0 0 0 .524.905l.83-.556a6.999 6.999 0 0 1-.458-.793l-.896.443zm13.828.905c.194-.289.37-.591.524-.906l-.896-.443c-.136.275-.29.54-.459.793l.831.556zm-12.667.83c.23.262.478.51.74.74l.66-.752a7.047 7.047 0 0 1-.648-.648l-.752.66zm11.29.74c.262-.23.51-.478.74-.74l-.752-.66c-.201.23-.418.447-.648.648l.66.752zm-1.735 1.161c.314-.155.616-.33.905-.524l-.556-.83a7.07 7.07 0 0 1-.793.458l.443.896zm-7.985-.524c.289.194.591.37.906.524l.443-.896a6.998 6.998 0 0 1-.793-.459l-.556.831zm1.873.925c.328.112.666.202 1.011.27l.194-.98a6.953 6.953 0 0 1-.884-.237l-.321.947zm4.132.271a7.944 7.944 0 0 0 1.012-.27l-.321-.948a6.954 6.954 0 0 1-.884.237l.194.98zm-2.083.135a8.1 8.1 0 0 0 1.046 0l-.064-.998a7.11 7.11 0 0 1-.918 0l-.064.998zM8.5 4.5a.5.5 0 0 0-1 0v3h-3a.5.5 0 0 0 0 1h3v3a.5.5 0 0 0 1 0v-3h3a.5.5 0 0 0 0-1h-3v-3z"/>
+                    </svg>
+                </button>
+            </div><br>
+            <div class="index row">
+                {% for poll in polls %}
+                    <div class="index-card col-md-12 index-card-lg ">
+                        <div class="card">
+                            <div class="image">
+                                <img src={{poll.image.url}} alt="image-{{poll.name}}">
+                            </div>
+                            <div class="details">
+                                <div class="description">
+                                    <h2 class="name">
+                                        {{poll.name}} 
+                                    </h2>
+                                    {% if poll.active %}
+                                        <p class="active-poll rounded-circle"></p>
+                                    {% else %}
+                                        <p class="inactive-poll rounded-circle"></p>
+                                    {% endif %}
+        
+                                    {% if poll.hidden %}
+                                        <p class="hidden-status">Hidden</p>
+                                    {% else %}
+                                        <p class="hidden-status">Visible</p>
+                                    {% endif %}
+                                </div>
+                                <div class="links">
+                                    <a class="btn btn-outline-primary"  href = "{{poll.manage_poll_url}}">
+                                        <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" fill="currentColor" class="bi bi-gear" viewBox="0 0 16 16">
+                                            <path d="M8 4.754a3.246 3.246 0 1 0 0 6.492 3.246 3.246 0 0 0 0-6.492zM5.754 8a2.246 2.246 0 1 1 4.492 0 2.246 2.246 0 0 1-4.492 0z"/>
+                                            <path d="M9.796 1.343c-.527-1.79-3.065-1.79-3.592 0l-.094.319a.873.873 0 0 1-1.255.52l-.292-.16c-1.64-.892-3.433.902-2.54 2.541l.159.292a.873.873 0 0 1-.52 1.255l-.319.094c-1.79.527-1.79 3.065 0 3.592l.319.094a.873.873 0 0 1 .52 1.255l-.16.292c-.892 1.64.901 3.434 2.541 2.54l.292-.159a.873.873 0 0 1 1.255.52l.094.319c.527 1.79 3.065 1.79 3.592 0l.094-.319a.873.873 0 0 1 1.255-.52l.292.16c1.64.893 3.434-.902 2.54-2.541l-.159-.292a.873.873 0 0 1 .52-1.255l.319-.094c1.79-.527 1.79-3.065 0-3.592l-.319-.094a.873.873 0 0 1-.52-1.255l.16-.292c.893-1.64-.902-3.433-2.541-2.54l-.292.159a.873.873 0 0 1-1.255-.52l-.094-.319zm-2.633.283c.246-.835 1.428-.835 1.674 0l.094.319a1.873 1.873 0 0 0 2.693 1.115l.291-.16c.764-.415 1.6.42 1.184 1.185l-.159.292a1.873 1.873 0 0 0 1.116 2.692l.318.094c.835.246.835 1.428 0 1.674l-.319.094a1.873 1.873 0 0 0-1.115 2.693l.16.291c.415.764-.42 1.6-1.185 1.184l-.291-.159a1.873 1.873 0 0 0-2.693 1.116l-.094.318c-.246.835-1.428.835-1.674 0l-.094-.319a1.873 1.873 0 0 0-2.692-1.115l-.292.16c-.764.415-1.6-.42-1.184-1.185l.159-.291A1.873 1.873 0 0 0 1.945 8.93l-.319-.094c-.835-.246-.835-1.428 0-1.674l.319-.094A1.873 1.873 0 0 0 3.06 4.377l-.16-.292c-.415-.764.42-1.6 1.185-1.184l.292.159a1.873 1.873 0 0 0 2.692-1.115l.094-.319z"/>
+                                          </svg>
+                                        Manage
+                                    </a>
+                                    <a class="btn btn-outline-primary" href = "{{poll.preview_url}}">
+                                        {% if poll.active %}
+                                            <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-hand-index-thumb" viewBox="0 0 16 16">
+                                                <path d="M6.75 1a.75.75 0 0 1 .75.75V8a.5.5 0 0 0 1 0V5.467l.086-.004c.317-.012.637-.008.816.027.134.027.294.096.448.182.077.042.15.147.15.314V8a.5.5 0 0 0 1 0V6.435l.106-.01c.316-.024.584-.01.708.04.118.046.3.207.486.43.081.096.15.19.2.259V8.5a.5.5 0 1 0 1 0v-1h.342a1 1 0 0 1 .995 1.1l-.271 2.715a2.5 2.5 0 0 1-.317.991l-1.395 2.442a.5.5 0 0 1-.434.252H6.118a.5.5 0 0 1-.447-.276l-1.232-2.465-2.512-4.185a.517.517 0 0 1 .809-.631l2.41 2.41A.5.5 0 0 0 6 9.5V1.75A.75.75 0 0 1 6.75 1zM8.5 4.466V1.75a1.75 1.75 0 1 0-3.5 0v6.543L3.443 6.736A1.517 1.517 0 0 0 1.07 8.588l2.491 4.153 1.215 2.43A1.5 1.5 0 0 0 6.118 16h6.302a1.5 1.5 0 0 0 1.302-.756l1.395-2.441a3.5 3.5 0 0 0 .444-1.389l.271-2.715a2 2 0 0 0-1.99-2.199h-.581a5.114 5.114 0 0 0-.195-.248c-.191-.229-.51-.568-.88-.716-.364-.146-.846-.132-1.158-.108l-.132.012a1.26 1.26 0 0 0-.56-.642 2.632 2.632 0 0 0-.738-.288c-.31-.062-.739-.058-1.05-.046l-.048.002zm2.094 2.025z"/>
+                                            </svg>
+                                            Vote
+                                        {% else %}
+                                            <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-eye" viewBox="0 0 16 16">
+                                                <path d="M16 8s-3-5.5-8-5.5S0 8 0 8s3 5.5 8 5.5S16 8 16 8zM1.173 8a13.133 13.133 0 0 1 1.66-2.043C4.12 4.668 5.88 3.5 8 3.5c2.12 0 3.879 1.168 5.168 2.457A13.133 13.133 0 0 1 14.828 8c-.058.087-.122.183-.195.288-.335.48-.83 1.12-1.465 1.755C11.879 11.332 10.119 12.5 8 12.5c-2.12 0-3.879-1.168-5.168-2.457A13.134 13.134 0 0 1 1.172 8z"/>
+                                                <path d="M8 5.5a2.5 2.5 0 1 0 0 5 2.5 2.5 0 0 0 0-5zM4.5 8a3.5 3.5 0 1 1 7 0 3.5 3.5 0 0 1-7 0z"/>
+                                            </svg>
+                                            Preview
+                                        {% endif %}
+                                    </a>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                {% endfor %} 
+            </div> 
+            {% if not polls %}
+                <h2 class="text-center">EMPTY</h2>
+            {% endif %} 
+            {% if polls.length > 10 %}
+                <div class="container-center-column pagination" style="width: 100%;">
+                    <span class="step-links">
+                        {% if polls.has_previous %}
+                            <a class="btn btn-primary" href="?page=1">&laquo; First</a>
+                            <a class="btn btn-primary" href="?page={{ polls.previous_page_number }}">Prev</a>
+                        {% else %}
+                            <button class="btn btn-outline-default">&laquo; first</button>
+                            <button class="btn btn-outline-default">Prev</button>
+                        {% endif %}
+                
+                        <span class="current">
+                            {{ polls.number }}/{{ polls.paginator.num_pages }}
+                        </span>
+                
+                        {% if polls.has_next %}
+                            <a class="btn btn-primary" href="?page={{ polls.next_page_number }}">Next</a>
+                            <a class="btn btn-primary" href="?page={{ polls.paginator.num_pages }}">Last &raquo;</a>
+                        {% else %}
+                            <button class="btn btn-outline-default">Next</button>
+                            <button class="btn btn-outline-default">Last &raquo;</button>
+                        {% endif %}
+                    </span>
+                </div>
+            {% endif %}
+        </div>
+    </div>
+{% endblock body %}

@@ -1,0 +1,57 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <title>
+            {% block title %}
+            {% endblock title %}
+        </title>
+        <meta http-equiv="Cache-control" content="no-store">
+        <meta charset="utf-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1">  
+        <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Lora|Ubuntu:400,700&display=swap" > 
+        <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+        <link rel="stylesheet" href="{% static 'dependencies/css/bootstrap.min.css' %}" >     
+        <script src="{% static 'dependencies/js/jquery.min.js/' %}"></script>
+        <script src="{% static 'dependencies/js/react.development.js/' %}" ></script>
+        <script src="{% static 'dependencies/js/react-dom.development.js/' %}" ></script>
+        <script src="{% static 'dependencies/js/babel.min.js/' %}" ></script> 
+        <script src="{% static 'dependencies/js/bootstrap.min.js/' %}" ></script> 
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.16.0/umd/popper.min.js"></script>
+        <link rel="stylesheet" href="{% static 'css/style.css' %}">
+        <script>
+            function getCookie(name) {
+                var cookieValue = null;
+                if (document.cookie && document.cookie !== '') {
+                    var cookies = document.cookie.split(';');
+                    for (var i = 0; i < cookies.length; i++) {
+                        var cookie = jQuery.trim(cookies[i]);
+                        // Does this cookie string begin with the name we want?
+                        if (cookie.substring(0, name.length + 1) === (name + '=')) {
+                            cookieValue = decodeURIComponent(cookie.substring(name.length + 1));
+                            break;
+                        }
+                    }
+                }
+                return cookieValue;
+            } 
+            const HOST = "http://127.0.0.1:8000"
+        </script>
+        {% block script %}
+        {% endblock script %}
+    </head>
+    
+    <body>
+        <section style="min-height: 80vh;">
+            {% include 'theSP/nav_bar.html' %}
+            {% block body %}
+            {% endblock body %}  
+        </section>
+
+        <section>
+            <footer>
+                {% include 'theSP/footer.html' %}
+            </footer>
+        </section>
+    </body>
+</html>

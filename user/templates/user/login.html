@@ -1,0 +1,28 @@
+
+{% extends 'theSP/layout.html' %}
+
+{% block title %} Login {% endblock title%}
+
+{% block body %} 
+    <div class="container-center-column" style="height: 100vh;">
+        {% if error_message %}
+            <div class="error_message"><h2 class="text-danger text-center">{{error_message}}</h2></div>
+        {% endif %}
+        <div class="form-box-small">
+            <h2>Login</h2>
+            <form action="{% url 'user:login' %}" method="post">
+                {% csrf_token %}
+                <div class="form-group">
+                    <input autofocus class="form-control" type="text" name="username" placeholder="Username">
+                </div>
+                <div class="form-group">
+                    <input class="form-control" type="password" name="password" placeholder="Password">
+                </div>
+                <br>
+                <input class="btn btn-primary" id="login_submit_button" type="submit" value="Login">
+            </form>
+            <p>Don't have an account? <a href="{% url 'user:register' %}">Sign Up</a></p>
+            <p>Forgot your password? <a href="{% url 'user:reset_password_email' %}">Click Here</a></p>    
+        </div>
+    </div>
+{% endblock body %}

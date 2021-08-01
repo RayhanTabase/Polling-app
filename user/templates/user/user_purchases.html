@@ -1,0 +1,35 @@
+
+{% extends 'theSP/layout.html' %}
+
+{% block title %} Invoices {% endblock title%}
+
+{% block body %}
+
+
+    <div  style="border: 1px solid black;">
+        List of unpaid invoices
+        <div>
+            {% for invoice in  request.user.purchase_invoices.all%}
+                {% if invoice.paid == False %}
+                    <div>
+                        {{invoice.total_cost}}
+                    </div>
+                {% endif %}
+            {% endfor %}
+        </div>
+    </div>
+
+    <div  style="border: 1px solid black;">
+        List of paid invoices
+        <div>
+            {% for invoice in  request.user.purchase_invoices.all%}
+                {% if invoice.paid %}
+                    <div>
+                        {{invoice.total_cost}}
+                    </div>
+                {% endif %}
+            {% endfor %}
+        </div>
+    </div>
+
+{% endblock body %}
