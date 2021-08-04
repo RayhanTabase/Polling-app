@@ -1,4 +1,4 @@
-### Final project - Polling app
+### Polling app
 
 This application is my capstone for Harvard CS50.
 
