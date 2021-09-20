@@ -2,7 +2,7 @@
 
 This application is my capstone for Harvard CS50.
 
-This is a polling app that allows registered users to create polls and also vote on existing polls that they have access to built using django,react,javascript,html,css.
+This is a polling app that allows registered users to create polls and also vote on existing polls that they have access to. It was built using django,react,javascript,html,css.
 
 All webpages are mobile responsive
 
