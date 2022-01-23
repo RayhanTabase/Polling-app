@@ -1,7 +1,10 @@
 # Election app
 
 > A CRUD app where users can create elections with different categories for other users to vote in.
-> polling as the username and password polling can be used to login 
+
+## Test login
+- Username: polling
+- Password: polling
 
 
 ## Screenshots
