@@ -2,6 +2,18 @@
 
 > A CRUD app where users can create elections with different categories for other users to vote in. 
 
+
+## Screenshots
+![screenshot](./screenshots/polImage 1.jpeg)
+![screenshot](./screenshots/polImage 2.jpeg)
+![screenshot](./screenshots/polImage 3.jpeg)
+![screenshot](./screenshots/polImage 5.jpeg)
+![screenshot](./screenshots/polImage 6.jpeg)
+![screenshot](./screenshots/polImage 7.jpeg)
+![screenshot](./screenshots/polImage 8.jpeg)
+![screenshot](./screenshots/polImage 9.jpeg)
+
+
 ## Built With
 - Django
 - React
