@@ -10,6 +10,11 @@
 - SCSS
 
 ## Other tools and technology
+- Django unit tests
+- Pandas
+- Convert to excel
+- Font awesome
+- Bootstrap
 - Heroku
 - Cloudinary
 
