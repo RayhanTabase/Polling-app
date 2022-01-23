@@ -1,16 +1,22 @@
-### Polling app
+# Election app
 
-This application is my capstone for Harvard CS50.
+> A CRUD app where users can create elections with different categories for other users to vote in. 
 
-This is a polling app that allows registered users to create polls and also vote on existing polls that they have access to. It was built using django,react,javascript,html,css.
+## Built With
+- Django
+- React
+- Javascript
+- Html
+- SCSS
 
-All webpages are mobile responsive
 
-### Short Video presentation: https://www.youtube.com/watch?v=nyNaelEiqxM
+## Video presentation
+[Presentation](https://www.youtube.com/watch?v=nyNaelEiqxM)
 
-### Deployed to heroku : https://pollingbox.herokuapp.com/
+## Live version
+[heroku](https://pollingbox.herokuapp.com/)
 
-### Features
+## Features
 1. Create and manage user account.
 2. Create and manage poll.
 3. Restrict poll ,access to vote, by key(s).
@@ -22,14 +28,14 @@ All webpages are mobile responsive
 9. Add keys from excel sheet or export keys as excel sheet
 10. Tests in apps
 
-#### How to run(Installation):
-- Install project dependencies by running pip install -r requirements.txt .Dependencies include Django and Pillow module that allows Django to work with images. Wheel, pandas, numpy,scipy,openpyxl to run excel sheet read and write.
-- Make and apply migrations by running python manage.py makemigrations and python manage.py migrate.
-- Create superuser with python manage.py createsuperuser . This step is optional.
-- Run server , python manage.py runserver
+## How to run(Installation):
+- Install project dependencies by running `pip install -r requirements.txt` .Dependencies include Django and Pillow module that allows Django to work with images. Wheel, pandas, numpy,scipy,openpyxl to run excel sheet read and write.
+- Make and apply migrations by running `python manage.py makemigrations` and `python manage.py migrate`.
+- Create superuser with `python manage.py createsuperuser` . This step is optional.
+- Run server with `python manage.py runserver`
 - Go to website address and register an account. Create a poll, manage your polls or vote on a poll
 
-#### Files and directories
+## Files and directories
 - `Main Directory`.
     - `capstone` - Main application directory.
         - `gitignore` - Ignored files for git.
@@ -59,7 +65,7 @@ All webpages are mobile responsive
             - `urls.py` - Contains all urls path for viewing polls, managing polls and api requests
             - `views.py` - Contains all view functions for index, viewing and managing created polls, voting on polls, checking key if required, viewing results and restricting who can have access to the data
             
-### Distinctiveness and Complexity:
+## Distinctiveness and Complexity:
 - More than one app with models that have a more complex relation and influence each other.
 - Uses React, ajax functionality, fetch data without reloading the page.
 - Hide poll feature to avoid listing active poll in home index
