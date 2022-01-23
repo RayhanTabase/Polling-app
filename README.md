@@ -9,6 +9,9 @@
 - Html
 - SCSS
 
+## Other tools and technology
+- Heroku
+- Cloudinary
 
 ## Video presentation
 [Presentation](https://www.youtube.com/watch?v=nyNaelEiqxM)
