@@ -4,14 +4,14 @@
 
 
 ## Screenshots
-![screenshots](./screenshots/polImage1.jpeg)
-![screenshot](./screenshots/polImage2.jpeg)
-![screenshot](./screenshots/polImage3.jpeg)
-![screenshot](./screenshots/polImage5.jpeg)
-![screenshot](./screenshots/polImage6.jpeg)
-![screenshot](./screenshots/polImage7.jpeg)
-![screenshot](./screenshots/polImage8.jpeg)
-![screenshot](./screenshots/polImage9.jpeg)
+![screenshots](./screenshot/polImage1.jpeg)
+![screenshot](./screenshot/polImage2.jpeg)
+![screenshot](./screenshot/polImage3.jpeg)
+![screenshot](./screenshot/polImage5.jpeg)
+![screenshot](./screenshot/polImage6.jpeg)
+![screenshot](./screenshot/polImage7.jpeg)
+![screenshot](./screenshot/polImage8.jpeg)
+![screenshot](./screenshot/polImage9.jpeg)
 
 
 ## Built With
