@@ -28,7 +28,7 @@
 ## Other tools and technology
 - Django unit tests
 - Pandas
-- Convert to excel
+- Convert table to excel
 - Font awesome
 - Bootstrap
 - Heroku
